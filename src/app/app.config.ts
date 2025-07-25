@@ -15,6 +15,6 @@ export const appConfig = {
     provideStore({
       todos: todosReducer,
     }),
-    provideEffects([]), // ჯერ ცარიელია, თუ გინდა effect-ებიც დავამატოთ
+    provideEffects([]), 
   ]
 };

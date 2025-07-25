@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-interface Todo {
-  text: string;
-  completed: boolean;
-}
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Todo } from '../../models/todo.model';
+import { selectTodos } from '../../store/selector/todos.selectors';
+import { addTodo, removeTodo, toggleTodo } from '../../store/actions/todos.actions';
 
 @Component({
   selector: 'app-todos',
@@ -16,23 +16,28 @@ interface Todo {
 })
 export class TodosComponent {
   todoText = '';
-  todos: Todo[] = [];
+  todos$: Observable<Todo[]>;
 
-addTodo() {
-  const text = this.todoText.trim();
-  if (text) {
-    this.todos.push({ text, completed: false });
-    this.todoText = '';
+  constructor(private store: Store) {
+    this.todos$ = this.store.select(selectTodos);
+    this.todos$.subscribe(todos => console.log('Todos:', todos));
   }
-}
 
+  addTodo() {
+    const text = this.todoText.trim();
+    if (text) {
+      this.store.dispatch(addTodo({ text }));
+      this.todoText = '';
+      this.todos$.subscribe(todos => console.log('Todos:', todos));
+    }
 
+  }
 
   toggleTodo(index: number) {
-    this.todos[index].completed = !this.todos[index].completed;
+    this.store.dispatch(toggleTodo({ index }));
   }
 
   removeTodo(index: number) {
-    this.todos.splice(index, 1);
+    this.store.dispatch(removeTodo({ index }));
   }
 }
