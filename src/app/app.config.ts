@@ -1,8 +1,13 @@
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { importProvidersFrom } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
 
-import { routes } from './app.routes';
-
-export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)]
+export const appConfig = {
+  providers: [
+    importProvidersFrom(
+      HttpClientModule,
+      HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 500 })
+    )
+  ]
 };
