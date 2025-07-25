@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Todo } from '../../models/todo.model';
 import { selectTodos } from '../../store/selector/todos.selectors';
-import { addTodo, removeTodo, toggleTodo } from '../../store/actions/todos.actions';
+import { addTodo, loadTodos, removeTodo, toggleTodo } from '../../store/actions/todos.actions';
 
 @Component({
   selector: 'app-todos',
@@ -20,6 +20,7 @@ export class TodosComponent {
 
   constructor(private store: Store) {
     this.todos$ = this.store.select(selectTodos);
+    this.store.dispatch(loadTodos()); 
     this.todos$.subscribe(todos => console.log('Todos:', todos));
   }
 

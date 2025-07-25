@@ -5,6 +5,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { todosReducer } from './todos/store/reducers/todos.reducer';
+import { TodoEffects } from './todos/store/effects/todo.effects';
 
 export const appConfig = {
   providers: [
@@ -15,6 +16,6 @@ export const appConfig = {
     provideStore({
       todos: todosReducer,
     }),
-    provideEffects([]), 
+    provideEffects([TodoEffects]), 
   ]
 };
