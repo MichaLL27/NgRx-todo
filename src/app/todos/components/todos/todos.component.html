@@ -1,0 +1,42 @@
+<div class="max-w-xl mx-auto mt-10 p-4 bg-white rounded-2xl shadow">
+  <h1 class="text-2xl font-bold text-center mb-4">📝 Todo List</h1>
+
+  <!-- Input + Add Button -->
+  <div class="flex items-center gap-2 mb-4">
+        <input
+        [(ngModel)]="todoText"
+        type="text"
+        placeholder="Enter todo..."
+        class="flex-1 p-2 border rounded"
+        />
+            <button
+            (click)="addTodo()"
+            class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+            >
+            Add
+            </button>
+  </div>
+
+  <ul>
+    <li
+      *ngFor="let todo of todos; let i = index"
+      class="flex justify-between items-center p-2 border-b"
+    >
+      <span [class.line-through]="todo.completed">{{ todo.text }}</span>
+      <div class="flex items-center gap-2">
+        <button
+          (click)="toggleTodo(i)"
+          class="text-sm text-green-600 hover:underline"
+        >
+          {{ todo.completed ? 'Undo' : 'Done' }}
+        </button>
+        <button
+          (click)="removeTodo(i)"
+          class="text-sm text-red-600 hover:underline"
+        >
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>
