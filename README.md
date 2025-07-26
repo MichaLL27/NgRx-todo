@@ -1,43 +1,82 @@
-# 📝 Todo API Backend
+# Fullstack Todo App
 
-This is a simple Node.js + Express + MongoDB backend project for managing todos. It supports full CRUD functionality and is structured to be easy to run and understand.
+This is a simple fullstack Todo app built with **Angular** for the frontend and **Node.js + Express + MongoDB** for the backend.
+
+## 🧱 Project Structure
+root/
+├── frontend/ → Angular app
+└── backend/ → Node.js/Express app
 
 
-## 🚀 Getting Started
+## 🖥️ Requirements
 
-Follow these steps to clone and run the project locally.
+- Node.js (v16+ recommended)
+- npm
+- MongoDB (local or cloud like MongoDB Atlas)
 
-### 1. Clone the repository
+---
 
-bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+## ⚙️ Setup Instructions
 
-### 2. Install dependencies
-Make sure you have Node.js and npm installed. Then run:
+### 1. Clone the Repository
 
+```bash
+git clone https://github.com/your-username/fullstack-todo-app.git
+cd fullstack-todo-app
+```
+
+🔙 Backend Setup (backend/)
+Step 1: Navigate to backend folder
+cd backend
+Step 2: Install dependencies
 npm install
-
-
-### 3. Create .env file
-Duplicate the .env.example file and rename it to .env. Then add your MongoDB connection string inside:
-
-MONGODB_URI=your_mongo_connection_uri
+Step 3: Setup environment variables
+Create a .env file in the backend/ directory and add the following:
+MONGO_URI=your_mongodb_connection_string
 PORT=3000
+Replace your_mongodb_connection_string with your actual connection string (e.g. from MongoDB Atlas)
 
-For example: 
-MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/todos?retryWrites=true&w=majority
-PORT=3000
+Step 4: Start the backend server
+npm run dev
+The backend will start on http://localhost:3000.
 
-🔐 Never share your real .env file publicly. It should remain private.
 
-### 4. Run the development server
-npm start
-The server should start on http://localhost:3000.
+🔜 Frontend Setup (frontend/)
+Step 1: Navigate to frontend folder
+cd ../frontend
+Step 2: Install dependencies
+npm install
+Step 3: Run the Angular app
+ng serve
+The frontend will be available at http://localhost:4200
+📦 API Endpoints (Backend)
+GET /api/todos → Fetch all todos
+POST /api/todos → Create a new todo
+PUT /api/todos/:id → Update a todo
+DELETE /api/todos/:id → Delete a todo
 
-### ✅ Requirements
-Node.js v18+
-MongoDB account (you can use MongoDB Atlas)
+
+
+💡 Notes
+Ensure your backend server is running before using the frontend app.
+
+You can modify the MongoDB connection string in .env as per your setup.
+
+This project uses NgRx in the frontend to manage state.
+
+
+✅ Features
+Create, Read, Update, Delete todos
+
+Uses NgRx Store and Effects for state management
+
+Connected to MongoDB with Mongoose
+
+Fully decoupled architecture
+
+
+🤝 Contributing
+Feel free to fork this repo and submit a pull request!
 
 👨‍💻 Author
 Made by Michael Lazarashvili – feel free to reach out!
