@@ -13,15 +13,16 @@ import {
 export class TodoEffects {
   constructor(private actions$: Actions, private http: HttpClient) {}
 
-  loadTodos$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(loadTodos),
-      switchMap(() =>
-        this.http.get<Todo[]>("http://localhost:3000/api/todos").pipe( // ← აქ ხელით ჩავწერეთ URL
-          map((todos) => loadTodosSuccess({ todos })),
-          catchError((error) => of(loadTodosFailure({ error })))
-        )
+loadTodos$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(loadTodos),
+    switchMap(() =>
+      this.http.get<{ status: string; message: string; result: Todo[] }>("http://localhost:3000/api/todos").pipe(
+        map(response => loadTodosSuccess({ todos: response.result })),
+        catchError((error) => of(loadTodosFailure({ error })))
       )
     )
-  );
+  )
+);
+
 }

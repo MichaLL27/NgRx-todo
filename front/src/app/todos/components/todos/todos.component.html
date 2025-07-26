@@ -18,7 +18,7 @@
 
   <ul>
     <li
-      *ngFor="let todo of todos$ | async; let i = index"
+      *ngFor="let todo of todos$ | async; let i = index; trackBy: trackById"
       class="flex justify-between items-center p-2 border-b"
     >
       <span [class.line-through]="todo.completed">{{ todo.text }}</span>

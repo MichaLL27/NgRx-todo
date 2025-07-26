@@ -20,8 +20,7 @@ export class TodosComponent {
 
   constructor(private store: Store) {
     this.todos$ = this.store.select(selectTodos);
-    this.store.dispatch(loadTodos()); 
-    this.todos$.subscribe(todos => console.log('Todos:', todos));
+    this.store.dispatch(loadTodos());
   }
 
   addTodo() {
@@ -29,9 +28,8 @@ export class TodosComponent {
     if (text) {
       this.store.dispatch(addTodo({ text }));
       this.todoText = '';
-      this.todos$.subscribe(todos => console.log('Todos:', todos));
+      // ამ subscribe-ს აქ არ სჭირდება, წაშალე
     }
-
   }
 
   toggleTodo(index: number) {
@@ -40,5 +38,10 @@ export class TodosComponent {
 
   removeTodo(index: number) {
     this.store.dispatch(removeTodo({ index }));
+  }
+
+  // trackBy ფუნქცია angular-ისთვის ოპტიმიზაციისთვის
+  trackById(index: number, todo: Todo) {
+    return todo.id ?? index;
   }
 }
