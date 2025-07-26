@@ -28,7 +28,6 @@ export class TodosComponent {
     if (text) {
       this.store.dispatch(addTodo({ text }));
       this.todoText = '';
-      // ამ subscribe-ს აქ არ სჭირდება, წაშალე
     }
   }
 
@@ -40,7 +39,6 @@ export class TodosComponent {
     this.store.dispatch(removeTodo({ index }));
   }
 
-  // trackBy ფუნქცია angular-ისთვის ოპტიმიზაციისთვის
   trackById(index: number, todo: Todo) {
     return todo.id ?? index;
   }
