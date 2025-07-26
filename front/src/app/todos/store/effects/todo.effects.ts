@@ -1,4 +1,3 @@
-// todos.effects.ts
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { HttpClient } from "@angular/common/http";
@@ -18,7 +17,7 @@ export class TodoEffects {
     this.actions$.pipe(
       ofType(loadTodos),
       switchMap(() =>
-        this.http.get<Todo[]>("/api/todos").pipe(
+        this.http.get<Todo[]>("http://localhost:3000/api/todos").pipe( // ← აქ ხელით ჩავწერეთ URL
           map((todos) => loadTodosSuccess({ todos })),
           catchError((error) => of(loadTodosFailure({ error })))
         )
